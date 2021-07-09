@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons'
+import Media from 'react-responsive';
 
 
-export class About extends Component {
- render() {
+function About() {
   return (
+    <Media query="(min-width: 400px)"> 
    <body>
    <main>
    <div className="container">
@@ -107,8 +108,9 @@ export class About extends Component {
    </div>
    </main>
    </body>
+   
+   </Media>
   )
  }
-}
 
 export default About
