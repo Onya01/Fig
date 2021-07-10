@@ -1,116 +1,101 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons'
-import Media from 'react-responsive';
+import axios from 'axios'
+import ReactStars from "react-rating-stars-component";
 
 
-function About() {
-  return (
-    <Media query="(min-width: 400px)"> 
-   <body>
-   <main>
-   <div className="container">
-   <div className="image1">
-    <img src={require('../images/Roose Muffen.jpg').default} height={200} width={200}/>
-    <div className="vish1">
-    <h3>Roose Muffen</h3>
-    <h3>12$</h3>
-    </div>
-    <h6>Serve with french fries + drink</h6>
-    <p>Choice of: Coke, Fanta, Sprite Upgrade to a larg fries. And whopper patty. Add tender crisp patty and more...</p>
-    <FontAwesomeIcon className="square" icon={faPlus}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm1" icon={faStar}/>
-          
-   </div>
-   <div className='image1'>
-    <img src={require('../images/pan cake.jpg').default} height={200} width={200}/>
-   <div className="vish1">
-   <h3>Egg Muffen</h3>
-   <h3>12$</h3>
-   </div>
-   <h6>Serve with french fries + drink</h6>
-    <p>Choice of: Coke, Fanta, Sprite Upgrade to a larg fries. And whopper patty. Add tender crisp patty and more...</p>
-    <FontAwesomeIcon className="square" icon={faPlus}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-   </div>
 
-   <div className="image1">
-    <img src={require('../images/Egg Muffen.jpg').default} height={200} width={200}/>
-    <div className="vish1">
-     <h3>Pan Cake</h3>
-     <h3>15$</h3>
-    </div>
-    <h6>Serve with french fries + drink</h6>
-    <p>Choice of: Coke, Fanta, Sprite Upgrade to a larg fries. And whopper patty. Add tender crisp patty and more...</p>
-    <FontAwesomeIcon className="square" icon={faPlus}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-   </div>
-   </div>
 
-   <div className="container1">
-    <div className="image2">
-     <img src={require('../images/Salad.jpg').default} height={200} width={200}/>
-     <div className="vish1">
-      <h3>Salads</h3>
-      <h3>15$</h3>
-     </div>
-     <h6>Serve with french fries + drink</h6>
-    <p>Choice of: Coke, Fanta, Sprite Upgrade to a larg fries. And whopper patty. Add tender crisp patty and more...</p>
-    <FontAwesomeIcon className="square" icon={faPlus}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm1" icon={faStar}/>
-    </div>
+class About extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      foodItems: []
+    }
+  }
 
-    <div className="image2">
-     <img src={require('../images/Egg Masala.jpg').default} height={200} width={200}/>
-     <div className="vish1">
-      <h3>Egg Masala</h3>
-      <h3>15$</h3>
-     </div>
-     <h6>Serve with french fries + drink</h6>
-    <p>Choice of: Coke, Fanta, Sprite Upgrade to a larg fries. And whopper patty. Add tender crisp patty and more...</p>
-    <FontAwesomeIcon className="square" icon={faPlus}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    </div>
+  //React lifecycle 
+componentDidMount() {
+  axios.get(`https://asm-dev-api.herokuapp.com/api/v1/food`)
+  .then(res => {
+    console.log("this is the response", res)
+    const food = res.data.data.meals;
+    this.setState({ foodItems: food });
+  }).catch(error => {
+    console.log("this is the error", error)
+  })
+  }
+  ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
 
-    <div className="image2">
-     <img src={require('../images/Vegle Muffen.jpg').default} height={200} width={200}/>
-     <div className="vish1">
-      <h3>Vegle Muffen</h3>
-      <h3>15$</h3>
-     </div>
-     <h6>Serve with french fries + drink</h6>
-      <p>Choice of: Coke, Fanta, Sprite Upgrade to a larg fries. And whopper patty. Add tender crisp patty and more...</p>
-     <FontAwesomeIcon className="square" icon={faPlus}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm" icon={faStar}/>
-    <FontAwesomeIcon className="atm1" icon={faStar}/>
-    </div>
+  render() {
+    const { foodItems } = this.state
+    return (
+      <div>
+        <body>
+          <main>
 
-    </div>
-  <p className="pat">Learn More</p>
+            <div className="cards">
+              {
+                foodItems && foodItems.map((item, index) => (
 
-   <div>
-     
-   </div>
-   </main>
-   </body>
-   
-   </Media>
-  )
- }
+                  <div className="card">
+                    <div className="img">
+                      <img src={item.strMealThumb} 
+                    />
+                    </div>
+                    
+                    <div className="vish1">
+                      <h3>{item.title}</h3>
+                      <h3>{item.price}</h3>
+                    </div>
+                    <h6>{item.strMeal}</h6>
+                    <p>{item.description}</p>
+                    <FontAwesomeIcon className="square" icon={faPlus} />
+                    <div className="atm">
+                      <ReactStars 
+                      count={item.ratings}
+                      onChange={this.ratingChanged}
+                      size={24}
+                      activeColor="#ffd700"
+                    />,
+                      
+                    </div>
+                    
+                    
+                  </div>
+                  
+                ))
+              }
+              
+            </div>
+            <h5 className="pat" > Learn More</h5>
+            <div>
+              
+            </div>
+
+
+            
+          </main>
+        </body>
+
+
+
+      </div>
+
+      // </Media >
+      //   )
+
+      // })
+      // }
+    )
+
+
+
+  }
+
+}
 
 export default About
