@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import ReactStars from "react-rating-stars-component";
 
@@ -84,12 +84,6 @@ componentDidMount() {
 
 
       </div>
-
-      // </Media >
-      //   )
-
-      // })
-      // }
     )
 
 
