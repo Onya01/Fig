@@ -5,8 +5,6 @@ import axios from 'axios'
 import ReactStars from "react-rating-stars-component";
 
 
-
-
 class About extends Component {
   constructor(props) {
     super(props)
@@ -44,7 +42,7 @@ componentDidMount() {
                   <div className="card">
                     <div className="img">
                       <img src={item.strMealThumb} 
-                    />
+                    alt="foods"/>
                     </div>
                     
                     <div className="vish1">
@@ -76,20 +74,11 @@ componentDidMount() {
               
             </div>
 
-
-            
           </main>
         </body>
-
-
-
       </div>
     )
-
-
-
   }
-
 }
 
 export default About
